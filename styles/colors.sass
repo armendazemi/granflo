@@ -1,0 +1,121 @@
+//--------------------------
+// Primitive Color Variables
+// --------------------------
+
+// Neutral Colors
+$white: #fff
+$neutral-100: #EEF0F0
+$neutral-200: #DFE3E3
+$neutral-400: #959B9B
+$neutral-600: #4B5563
+$neutral-800: #1F2937
+$neutral-900: #111827
+$neutral-950: #030712
+
+// Primary Colors
+$primary-600: #FFCC29
+$primary-800: #EFAD03
+
+
+// System Colors
+$red-50: #fef2f2
+$red-100: #f87171
+$red-600: #dc2626
+$red-800: #991b1b
+$red-campaign: #BE123C
+
+$green-50: #f2fbf5
+$green-300: #97deb3
+$green-700: #15803d
+$blue-600: #1570ef
+
+// Overlay & Transparency
+$alpha-black-40: rgba(0, 0, 0, 0.4)
+$alpha-black-60: rgba(0, 0, 0, 0.6)
+
+
+//--------------------------
+// Shadows
+// --------------------------
+.shadow-lg
+  box-shadow: 0 12px 16px -4px rgba(16, 24, 40, 0.08), 0px 4px 6px -2px rgba(16, 24, 40, 0.03)
+
+.shadow-xl
+  box-shadow: 0 24px 48px -12px rgba(16, 24, 40, 0.18)
+
+
+//--------------------------
+// Semantic Color Variables
+// --------------------------
+
+// Text Colors
+$text-primary: $neutral-950
+$text-secondary: $neutral-800
+$text-tertiary: $neutral-600
+$text-white: $white
+$text-brand-default: $primary-600
+$text-brand-hover: $primary-800
+$text-campaign: $red-campaign
+$text-disabled: $neutral-400
+
+$text-colors: (primary: $text-primary, secondary: $text-secondary, tertiary: $text-tertiary, white: $text-white, brand-default: $text-brand-default, brand-hover: $text-brand-hover, campaign: $text-campaign, disabled: $text-disabled)
+@each $name, $value in $text-colors
+  .text-#{"#{$name}"}
+    color: $value !important
+
+
+// Foreground
+$foreground-white: $white
+$foreground-primary: $neutral-950
+$foreground-input-icons: $neutral-600
+$foreground-brand-default: $primary-600
+$foreground-brand-hover: $primary-800
+$foreground-scrollbar: $neutral-200
+$foreground-disabled: $neutral-400
+
+// Background
+$background-default: $white
+$background-secondary: $neutral-100
+$background-hover-light: $neutral-100
+$background-hover-dark: $neutral-800
+$background-dark-background: $neutral-950
+$background-dark-section: $neutral-900
+$background-disabled: $neutral-100
+
+$background-brand-default: $primary-600
+$background-brand-hover-dark: $primary-800
+$background-brand-campaign: $red-campaign
+
+// Border
+$border-primary: $neutral-400
+$border-secondary: $neutral-200
+$border-hover: $neutral-950
+$border-divider: $neutral-200
+
+$border-brand-default: $primary-600
+$border-brand-hover: $primary-800
+$border-focused-system: $blue-600
+$border-focused-black: $neutral-950
+$border-disabled: $neutral-200
+
+// System/Error
+$system-error-default: $red-600
+$system-error-hover: $red-800
+$system-error-background: $red-50
+$system-error-hover-light: $red-50
+$system-error-border: $red-100
+
+// System/Success
+$system-success-default: $green-700
+$system-success-background: $green-50
+$system-success-border: $green-300
+
+// Overlay
+$overlay-black-40: $alpha-black-40
+$overlay-black-60: $alpha-black-60
+
+
+$bg-colors: (default: $background-default, secondary: $background-secondary, hover-light: $background-hover-light, hover-dark: $background-hover-dark, dark-background: $background-dark-background, dark-section: $background-dark-section, disabled: $background-disabled, brand-default: $background-brand-default,  brand-hover-dark: $background-brand-hover-dark, brand-campaign: $background-brand-campaign, error-default: $system-error-default, error-hover: $system-error-hover, error-background: $system-error-background, error-hover-light: $system-error-hover-light, error-border: $system-error-border, success-default: $system-success-default, success-background: $system-success-background, success-border: $system-success-border, overlay-black-40: $overlay-black-40, overlay-black-60: $overlay-black-60)
+@each $name, $value in $bg-colors
+  .bg-#{$name}
+    background-color: $value !important

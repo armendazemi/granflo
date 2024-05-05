@@ -1,0 +1,64 @@
+//--------------------------
+// TYPOGRAPHY
+// -------------------------
+@import url("https://use.typekit.net/moi2smu.css")
+
+
+$font-heading: "Adelle Sans", sans-serif
+$font-body: "Adelle Sans", sans-serif
+
+// Mixins
+@mixin fontSizePxToRem($value)
+  $remValue: calc($value / 16)
+  font-size: $remValue + rem
+
+$weights: (regular: 400, semi: 600, bold: 700)
+@each $weight, $value in $weights
+  .fw-#{$weight}
+    font-weight: $value !important
+
+// Base
+*
+  font-family: $font-body
+  margin: 0
+
+h1, h2, h3, h4, h5, h6
+  font-family: $font-heading
+
+// Headings
+
+.display-lg
+  @include fontSizePxToRem(36)
+  @media (min-width: 992px)
+    @include fontSizePxToRem(44)
+
+.display-md
+  @include fontSizePxToRem(30)
+  @media (min-width: 992px)
+    @include fontSizePxToRem(36)
+
+.display-sm
+  @include fontSizePxToRem(22)
+  @media (min-width: 992px)
+    @include fontSizePxToRem(30)
+
+.display-xs
+  @extend .display-xxs
+  @media (min-width: 992px)
+    @include fontSizePxToRem(22)
+
+.display-xxs
+  @include fontSizePxToRem(20)
+
+// Buttons
+.button-lg
+  @include fontSizePxToRem(18)
+
+.button-sm
+  @include fontSizePxToRem(16)
+
+//Text
+$body-text-sizes: (xs: 12, sm: 14, md: 16, lg: 18, xl: 20, 2xl: 22, 3xl: 24, 4xl: 30, 5xl: 36, 6xl: 44)
+@each $size, $value in $body-text-sizes
+  .text-#{$size}
+    @include fontSizePxToRem($value)
