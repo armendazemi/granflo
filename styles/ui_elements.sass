@@ -151,7 +151,7 @@ button
 
 
 // --------------------------
-// LINKS TABS & BREADCRUMBS$
+// LINKS TABS BADGES & BREADCRUMBS
 // --------------------------
 %link-base
   display: flex
@@ -191,19 +191,15 @@ button
 
 
 .tab-default
-  @extend %link-base
+  @extend %button-base
+  @include fontSizePxToRem(16)
   color: $text-primary
-  @extend .button-lg
+  font-weight: 500
+  transition: all 200ms linear
 
   &:hover,
-  &:active,
   &.active
-    text-decoration: underline
-    background-color: $background-hover-light
-
-  &:disabled
-    color: $text-disabled
-    cursor: not-allowed
+    background-color: $background-brand-default
 
 
 .breadcrumb-link
@@ -219,9 +215,16 @@ button
     text-decoration: underline
 
   &:disabled
-    color: $text-disabled
+    color: $text-disabled 
     cursor: not-allowed
 
+.badge-default
+  height: 36px
+  padding-left: $spacing-sm
+  padding-right: $spacing-sm
+  border-radius: $radius-full
+  border: 1px solid $border-primary
+  font-weight: 600
 
 // --------------------------
 // INPUTS
