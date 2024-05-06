@@ -1,168 +1,83 @@
-import {toggleVisibility} from './utils.js';
+'use strict';
+export default class FormComponent extends HTMLElement {
+	constructor() {
+		super();
+		this.style.display = 'block';
+		this.form = this.querySelector('form') || null;
+		this.form !== null ? this.form.classList.add('needs-validation') : null;
+		this.modalSelector = this.getAttribute('modal');
+	}
 
-export default class Modal extends HTMLElement {
-  constructor() {
-    super();
+	connectedCallback() {
+		if (!this.checkForForm()) {
+			this.addForm();
+		}
+		this.addListeners();
+	}
 
-    this.modalHandler = this.modalController();
-  }
+	checkForForm() {
+		return this.innerHTML.indexOf('<form') !== -1;
+	}
 
-  connectedCallback() {
-    window.connectedModals = window.connectedModals || 0;
-    window.connectedModals++;
-    this.addListeners();
-  }
+	addForm() {
+		const form = document.createElement('form');
+		form.innerHTML = this.innerHTML;
+		form.className = this.className;
+		form.classList.add('needs-validation');
+		form.action = this.getAttribute('action');
+		form.method = this.getAttribute('method');
+		form.setAttribute('novalidate', '');
+		this.className = '';
+		this.innerHTML = '';
+		this.form = form;
+		this.appendChild(form);
+	}
 
-  disconnectedCallback() {
-    window.connectedModals--;
-    if (window.connectedModals === 0) {
-      window.removeEventListener('modalchange', this.modalHandler.bind(this));
-      window.removeEventListener('click', this.handleModalEvents);
-    }
-  }
+	addListeners() {
+		this.form.addEventListener('submit', (event) => {
+			event.preventDefault();
+			event.stopPropagation();
+			if (!this.form.checkValidity()) {
+				this.form.classList.add('was-validated');
+			} else {
+				this.form.classList.remove('was-validated');
+				this.handleFormSubmit(event);
+			}
+		});
+	}
 
-  addListeners() {
-    // Event listener for opening the modal
-    if (window.connectedModals === 1) {
-      window.addEventListener('modalchange', this.modalHandler.bind(this));
-      window.addEventListener('click', this.handleModalEvents.bind(this));
-      window.addEventListener('keydown', this.handleModalEvents.bind(this));
-      window.addEventListener('modalcloseall', this.closeAllOpenModals.bind(this));
-    }
-  }
+	async handleFormSubmit(event) {
+		const action = this.form.getAttribute('action');
+		const method = this.form.getAttribute('method');
+		const formData = new FormData(this.form);
+		const authToken = document.querySelector('meta[name="csrf-token"]').content;
 
-  handleModalEvents(event) {
-    this.handleModalAction(event);
-    this.handleModalZIndex(event);
-    this.handleEscapeKey(event);
-  }
+		const response = await fetch(action, {
+			method: method,
+			body: formData,
+			headers: {
+				'X-CSRF-Token': authToken,
+			},
+		});
 
-  handleModalZIndex(event) {
-    if (event.target.hasAttribute('data-z-index')) {
-      if (event.target.hasAttribute('data-z-element')) {
-        const zIndex = event.target.getAttribute('data-z-index');
-        const zIndexElement = document.querySelector(event.target.getAttribute('data-z-element'));
-        zIndexElement.style.zIndex = zIndex;
-      } else {
-        this.style.zIndex = event.target.getAttribute('data-z-index');
-      }
-    }
-  }
+		if (this.modalSelector && response.ok && response.status === 200) {
+			this.handleModalDisplay(this.modalSelector);
+			this.form.reset();
+		}
+	}
 
-  handleModalAction(event) {
-    if (event.target.hasAttribute('data-modal-action')) {
-      const modalAction = event.target.getAttribute('data-modal-action');
-      const modalElement = event.target.getAttribute('data-modal-element');
-      const withOverlay = event.target.getAttribute('data-modal-overlay') || true;
-      window.dispatchEvent(
-        new CustomEvent('modalchange', {
-          detail: {
-            action: modalAction,
-            element: modalElement,
-            withOverlay: withOverlay,
-            initiator: event.target,
-          },
-        })
-      );
-    }
-  }
-
-  handleEscapeKey(event) {
-    if (event.key === 'Escape') {
-      const openModal = document.querySelector('modal-component.open');
-      if (openModal) {
-        // Close the modal
-        window.dispatchEvent(
-          new CustomEvent('modalchange', {
-            detail: {
-              action: 'close',
-              element: `#${openModal.id}`,
-              withOverlay: false,
-            },
-          })
-        );
-      }
-    }
-  }
-
-  modalController() {
-    // Closure to keep track of the original action
-    let originalAction = null;
-    let shouldToggleAction = false;
-
-    return function (event) {
-      const {action, element, initiator} = event.detail;
-      const modalElement = document.querySelector(element);
-      if (!modalElement) return;
-
-      // Check if the action should be toggled
-      if (initiator && initiator.hasAttribute('data-action-toggle')) {
-        shouldToggleAction = true;
-      }
-
-      // Keep track of the original action if it's not set yet
-      if (!originalAction) {
-        originalAction = action;
-      }
-
-      // Toggle the action
-      if (initiator && shouldToggleAction) {
-        const newAction = action !== 'close' ? 'close' : originalAction;
-        initiator.setAttribute('data-modal-action', newAction);
-      }
-
-      this.handleOpenModal(action, modalElement);
-      toggleVisibility(modalElement, action);
-
-      // Dispatch 'overlaychange' event with additional details
-      if (event.detail.withOverlay === true || event.detail.withOverlay === 'true') {
-        window.dispatchEvent(
-          new CustomEvent('overlaychange', {
-            detail: {
-              action,
-              element: modalElement,
-              initiator,
-            },
-          })
-        );
-      }
-    };
-  }
-
-  handleOpenModal(action, modalElement) {
-    if (action !== 'close') {
-      // Check if there is another open modal and close it.
-      const openModals = document.querySelectorAll('modal-component.open');
-      openModals.forEach((openModal) => {
-        this.closeModal(openModal);
-      });
-    }
-  }
-
-  closeModal(element) {
-    // Try to find the initiator of the modal
-    let initiator = document.querySelector(`[data-modal-element="#${element.id}"]`);
-    if (!initiator) {
-      initiator = document.querySelector(`[data-modal-element=".${element.id}"]`);
-    }
-    window.dispatchEvent(
-      new CustomEvent('modalchange', {
-        detail: {
-          action: 'close',
-          element: `#${element.id}`,
-          withOverlay: false,
-          initiator,
-        },
-      })
-    );
-  }
-
-  closeAllOpenModals() {
-    const openModals = document.querySelectorAll('modal-component.open');
-    openModals.forEach((openModal) => {
-      this.closeModal(openModal);
-    });
-  }
+	handleModalDisplay(modalSelector) {
+		const modal = document.querySelector(modalSelector);
+		window.dispatchEvent(
+			new CustomEvent('modalchange', {
+				detail: {
+					action: 'open',
+					element: modalSelector,
+					withOverlay: true,
+				},
+			})
+		);
+	}
 }
 
-customElements.define('modal-component', Modal);
+customElements.define('form-component', FormComponent);

@@ -1,0 +1,47 @@
+<section class="hero-section">
+  <swiper-slider
+    slides="1"
+    pagination=".swiper-pagination--white"
+    autoplay="true"
+    delay="5000"
+    fade="true"
+    loop="true">
+    <div class="swiper swiper-container hero-full-slider">
+      <div class="swiper-wrapper">
+        {% for item in lists.hero-slider-start.rows %}
+          <div class="swiper-slide w-100">
+            <div class="swiper-image hero-full-slider__image w-100 position-relative">
+              <img
+                class="hero-full-image position-absolute object-fit-cover h-100 w-100"
+                src="{{ item.bild-mobil }}"
+                srcset="{{ item.bild-desktop }} 992w"
+                loading="lazy"
+                alt="Hero bild {{ forloop.index }}/{{ lists.hero-slider-start.rows.size }}">
+              <div class="swiper-lazy-preloader"></div>
+              <div class="image-overlay position-absolute top-0 start-0 w-100 h-100 bg-overlay-black-40"></div>
+            </div>
+
+            <div class="swiper-content position-absolute top-50 start-50 translate-middle z-2 w-100">
+              <div class="container">
+                <div class="row justify-content-center">
+                  <div class="col-12">
+                    <div class="d-flex flex-column justify-content-center align-items-start row-gap-xl">
+                      <h2 class="text-white fw-bold display-lg">{{ item.rubrik }}</h2>
+                      <p class="text-white text-lg">{{ item.text }}</p>
+                    </div>
+                    <div class="swiper-content__cta d-flex justify-content-start">
+                      <a href="{{ item.knapp-link }}" class="brand-button-primary">
+                        {{ item.knapp-text }}
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      <div class="swiper-pagination swiper-pagination--white d-flex column-gap-base justify-content-center align-items-center position-absolute bottom-0 margin-bottom-5xl z-3"></div>
+    </div>
+  </swiper-slider>
+</section>

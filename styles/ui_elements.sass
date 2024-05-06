@@ -8,16 +8,13 @@
 button
   border: none
   cursor: pointer
-  height: 54px
   transition: all linear 200ms
-
-.button--small
-  height: 44px
 
 %button-base
   display: flex
   align-items: center
   justify-content: center
+  height: 54px
   gap: $spacing-xs
   border-radius: $radius-full
   padding-left: $spacing-xl
@@ -37,6 +34,8 @@ button
     padding: 0 !important
     width: 54px
 
+  &.small
+    height: 44px
 
 .brand-button-primary
   @extend %button-base

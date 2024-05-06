@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="{{ locale }}">
+  <head>
+    
+    <script type="text/javascript" src="//script.crazyegg.com/pages/scripts/0024/9429.js" async="async" ></script>
+    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="google-site-verification" content="dAxg-TNBDfcCYxGVFeKkp9XN5q-7chco5dRPuvBh3Rs" />
+    {% if seo.description != '' %}<meta name="description" content="{{ seo.description }}">{% endif %}
+    {% if seo.keywords != '' %}<meta name="keywords" content="{{ seo.keywords }}">{% endif %}
+
+    <title>{{ seo.title }}</title>
+
+    {{ wm3 }}
+
+    <!-- Styles -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:200,400,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ 'application.css' | template_path }}?700" rel="stylesheet">
+    <link href="{{ 'responsive.css' | template_path }}?500" rel="stylesheet">
+    <link rel="alternate" type="application/rss+xml" href="/{{locale}}/a.rss" title="RSS Feed">
+
+
+    <!-- Scripts -->
+    <script src="{{ 'application.js' | template_path }}?400"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBA6txi_urMvqTtCIFGaMs3MrvXQxnVCWA"></script>
+    <script src="{{ 'map.js' | template_path }}"></script>
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.0/jquery.cookie.min.js"></script>
+    <meta name="google-site-verification" content="9OGuRk7URU2FbEPgtZQEtRtxZ1_O1CvE5nt2Cp06oPg" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lte IE 8]>
+      <link href="{{ 'ie8.css' | template_path }}" rel="stylesheet">
+    <![endif]-->
+  </head>
+  <body>
+    {% assign page_path = request.path %}
+    <!--[if lte IE 8]>
+      <div class="ie-container">
+        <p>Du surfar via en äldre version av webbläsare. För en bättre upplevelse uppdatera din webbläsare.</p>
+        <a href="http://windows.microsoft.com/sv-se/internet-explorer/download-ie">Uppdatera här</a>
+      </div>
+    <![endif]-->
+    <div class="cookie-container-wrapper">
+      <div class="cookie-container">
+        <div class="container"> 
+          <p>
+            På granflobygg.se använder vi cookies för att webbplatsen ska fungera på ett bra sätt för dig. 
+            Genom att surfa vidare godkänner du att vi använder cookies.
+          </p>
+          <button id="create-cookie">
+            Jag godkänner
+          </button>
+        </div>
+      </div>
+    </div>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapse" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="/" class="navbar-brand"><img src="{{ 'logo.png' | asset_path }}" alt="Granflo Bygg" /></a>
+        </div>
+        <div class="collapse navbar-collapse" id="collapse">
+          {{ 'full' | menu: 'nav navbar-nav full-menu' }}
+          <ul class="nav navbar-nav">
+            <li>
+              <a href="/extranet"><i class="fa fa-unlock-alt">&nbsp;</i></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container-fluid page-wrap {% if admin %} admin-mode {% endif %}">
+    
+    
+    
+    
+    
+    

@@ -1,0 +1,230 @@
+@import 'colors'
+@import 'typography'
+@import 'spacings'
+@import 'ui_elements'
+
+
+
+// ------------------------------
+// Global
+// ------------------------------
+html, body
+  height: 100%
+
+body
+  display: flex
+  flex-direction: column
+
+header
+  position: fixed
+  top: 0
+  width: 100%
+  z-index: 10
+  background-color: $white
+
+footer 
+  margin-top: auto
+
+img
+  height: 100%
+
+button
+  *
+    pointer-events: none
+
+
+// ------------------------------
+// COMPONENTS
+  // ------------------------------
+modal-component
+  display: none
+  position: fixed
+  z-index: 1000
+  opacity: 0
+  transition: all 0.3s ease-in-out
+
+  &.open
+    opacity: 1
+
+// ------------------------------
+// HELPERS
+// ------------------------------
+.side-menu
+  position: fixed
+  flex-direction: column
+  top: 0
+  height: 100%
+  width: 80%
+  z-index: 1000
+  padding: 0 16px
+  background: $foreground-white
+  transition: all 0.3s ease-in-out
+
+  &.open
+    transform: translateX(0)
+
+  @media (min-width: 992px)
+    width: 25%
+    min-width: 400px
+
+
+.side-menu--right
+  right: 0
+  transform: translateX(100%)
+
+
+.side-menu--left
+  left: 0
+  transform: translateX(-100%)
+
+.default-padding-section
+  padding-top: $spacing-5xl
+  padding-bottom: $spacing-5xl
+
+  @media (min-width: 992px)
+    padding-top: $spacing-6xl
+    padding-bottom: $spacing-6xl
+// ------------------------------
+// Sliders
+// ------------------------------
+.swiper-pagination--white,
+.swiper-pagination--black
+  .swiper-pagination-bullet
+    height: 16px
+    width: 0
+
+  .swiper-pagination-bullet::before
+    content: ''
+    display: block
+
+    background-size: 100%
+    background-repeat: no-repeat
+    width: 16px
+    height: 16px
+
+.swiper-pagination--white
+  .swiper-pagination-bullet::before
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none'%3E%3Cg clip-path='url(%23clip0_13121_2910)'%3E%3Cpath d='M4 8C4 5.79086 5.79086 4 8 4C10.2091 4 12 5.79086 12 8C12 10.2091 10.2091 12 8 12C5.79086 12 4 10.2091 4 8Z' fill='white'/%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='clip0_13121_2910'%3E%3Crect width='16' height='16' rx='6' fill='white'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E")
+
+  .swiper-pagination-bullet-active::before
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none'%3E%3Cg clip-path='url(%23clip0_13121_2907)'%3E%3Cpath d='M0.5 8C0.5 3.85786 3.85786 0.5 8 0.5C12.1421 0.5 15.5 3.85786 15.5 8C15.5 12.1421 12.1421 15.5 8 15.5C3.85786 15.5 0.5 12.1421 0.5 8Z' stroke='white'/%3E%3Cpath d='M4 8C4 5.79086 5.79086 4 8 4C10.2091 4 12 5.79086 12 8C12 10.2091 10.2091 12 8 12C5.79086 12 4 10.2091 4 8Z' fill='white'/%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='clip0_13121_2907'%3E%3Crect width='16' height='16' rx='6' fill='white'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E")
+
+.swiper-pagination--black
+  .swiper-pagination-bullet::before
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"><g clip-path="url(%23clip0_13155_373)"><path d="M4 8C4 5.79086 5.79086 4 8 4C10.2091 4 12 5.79086 12 8C12 10.2091 10.2091 12 8 12C5.79086 12 4 10.2091 4 8Z" fill="%23030712"/></g><defs><clipPath id="clip0_13155_373"><rect width="16" height="16" rx="6" fill="white"/></clipPath></defs></svg>')
+
+  .swiper-pagination-bullet-active::before
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"><g clip-path="url(%23clip0_13155_370)"><path d="M0.5 8C0.5 3.85786 3.85786 0.5 8 0.5C12.1421 0.5 15.5 3.85786 15.5 8C15.5 12.1421 12.1421 15.5 8 15.5C3.85786 15.5 0.5 12.1421 0.5 8Z" stroke="%23030712"/><path d="M4 8C4 5.79086 5.79086 4 8 4C10.2091 4 12 5.79086 12 8C12 10.2091 10.2091 12 8 12C5.79086 12 4 10.2091 4 8Z" fill="%23030712"/></g><defs><clipPath id="clip0_13155_370"><rect width="16" height="16" rx="6" fill="white"/></clipPath></defs></svg>')
+
+.swiper-content__cta
+  margin-top: $spacing-2xl
+
+.product-slider__header
+  margin-bottom: $spacing-base
+
+  @media (min-width: 992px)
+    margin-bottom: $spacing-lg
+
+.swiper-controls
+  padding-top: $spacing-xs
+  margin-top: $spacing-xl
+
+.product-slider .swiper-pagination
+  position: static
+
+
+.swiper-button-next,
+.swiper-button-prev
+  position: static
+  height: 36px
+  width: 36px
+  background-color: transparent
+
+  &::after
+    content: ''
+    background-size: 100%
+    background-repeat: no-repeat
+    width: 16px
+    height: 16px
+
+.swiper-button-lock
+  opacity: 0 !important 
+
+.swiper-button-next::after
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2.66663 8H13.3333M13.3333 8L9.33329 4M13.3333 8L9.33329 12" stroke="%23030712" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/></svg>')
+
+.swiper-button-prev::after
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M20 12H4M4 12L10 18M4 12L10 6" stroke="%23030712" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>')
+
+.swiper-button-prev--chev-icon::after
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M12.5 15L7.5 10L12.5 5" stroke="%23030712" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"/></svg>')
+
+.swiper-button-next--chev-icon::after
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7.5 15L12.5 10L7.5 5" stroke="%23030712" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"/></svg>')
+
+
+// ------------------------------
+// Header
+// ------------------------------
+.nav-logo
+  display: block
+  height: 48px
+  width: auto
+
+.main-menu--mobile
+  display: block
+  position: fixed
+  height: 300px
+  left: 0
+  padding: $spacing-xl 0
+  width: 100%
+  height: 100%
+  background-color: $white
+  transition: opacity 0.3s ease-in-out
+
+.site-menu-full
+  list-style: none
+  margin: 0
+  padding: 0
+
+.site-menu-item
+  a
+    @extend .navigation-button
+    justify-content: flex-start
+    padding: $spacing-sm $spacing-base
+    text-decoration: none
+    color: $text-primary
+    width: 100%
+    
+
+#mobile-menu-toggler
+  display: block
+  @media (min-width: 940px)
+    display: none
+
+.desktop-menu
+  display: none
+  li:last-child
+    a
+      @extend .neutral-button-primary
+
+  @media (min-width: 940px)
+    display: flex
+
+
+// ------------------------------
+// START
+  // ------------------------------
+
+.hero-full-slider__image
+  aspect-ratio: 0.58
+  max-height: calc(100vh - $header-desktop-height)
+  @media (min-width: 992px)
+    aspect-ratio: 2
+    max-height: 720px
+
+.gray-card__image-wrapper
+  height: 64px
+  width: 64px
+  flex-grow: 0
+  flex-shrink: 0

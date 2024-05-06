@@ -1,0 +1,39 @@
+{% include 'new_header' %}
+<top-element>
+  {% include 'full_hero_slider' %}
+</top-element>
+
+<section class="default-padding-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        {{ 'start-top' | page_editable: class: 'col-12 col-lg-7 d-flex flex-column row-gap-xl row-gap-lg-lg' }}
+      </div>
+    </div>
+
+    <div class="row flex-wrap row-gap-xl margin-top-4xl">
+      {% for service in lists.tjanster-start.rows %}
+        <div class="col-12 col-lg-4">
+          <div class="gray-card bg-secondary radius-md padding-2xl padding-lg-3xl h-100">
+            <div class="gray-card__image-wrapper margin-bottom-xl">
+              <img src="{{service.ikon}}" alt="{{service.rubrik}}">
+            </div>
+
+            <div class="gray-card__content d-flex flex-column row-gap-sm">
+              <p class="display-xs fw-bold">{{ service.rubrik }}</p>
+              <p>{{ service.text }}</p>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="default-padding-section bg-secondary">
+  <div class="container">
+    <div class="row"></div>
+  </div>
+</section>
+
+{% include 'new_footer' %}
