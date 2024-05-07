@@ -46,6 +46,54 @@ modal-component
   &.open
     opacity: 1
 
+accordion-item.open
+  .accordion-item__icon
+    transform: rotate(180deg)
+    background-color: $background-dark-background
+    path
+      stroke: $white
+
+  .accordion-item__content
+    grid-template-rows: 1fr
+
+.accordion-item__button
+  display: flex
+  justify-content: space-between
+  width: 100%
+  @extend .display-sm
+  font-weight: 700
+  padding: $spacing-base 0
+  transition: all 0.3s ease-out
+
+
+  &:hover
+    color: $text-brand-default
+
+    .accordion-item__icon
+      background-color: $background-dark-background
+      path
+        stroke: $white
+
+
+.accordion-item__icon
+  display: flex
+  justify-content: center
+  align-items: center
+  height: 44px
+  width: 44px
+  border-radius: $radius-full
+  border: 1px solid $border-primary
+  pointer-events: none
+  transition: all 0.3s ease-out
+
+
+.accordion-item__content
+  display: grid
+  grid-template-rows: 0fr
+  transition: all 0.3s ease-in-out
+  &>div
+    overflow: hidden
+  
 // ------------------------------
 // HELPERS
 // ------------------------------
@@ -228,3 +276,52 @@ modal-component
   width: 64px
   flex-grow: 0
   flex-shrink: 0
+
+.service-card__image
+  height: 343px
+  width: 100%
+  object-fit: cover
+  @media  (min-width: 992px)
+    height: auto
+    aspect-ratio: 1
+
+.project-card:hover,
+.article-card:hover
+  img
+    transform: scale(1.1)
+
+.project-card__image-wrapper,
+.article-card__image-wrapper
+  aspect-ratio: 3/2
+  overflow: hidden
+
+  img
+    transition: transform 0.3s ease-in-out
+  @media (min-width: 992px)
+    aspect-ratio: 8/5
+
+.article-card
+  &:hover
+    .article-card__button
+      background-color: $background-brand-default
+      path
+        stroke: $foreground-primary
+
+.article-card__button
+  pointer-events: none
+
+  svg
+    transition: all 200ms linear
+
+.article-card__image-wrapper
+  position: relative
+
+  &::after
+    content: ''
+    display: block
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" viewBox="0 0 70 70" fill="none"><path d="M70 0C70 6.82234 64.4694 12.3529 57.6471 12.3529H43.1629L43.1676 12.4206C42.5097 12.3758 41.8458 12.3529 41.1765 12.3529C25.2577 12.3529 12.3529 25.2577 12.3529 41.1765C12.3529 41.8458 12.3758 42.5097 12.4206 43.1676L12.3529 43.1629V57.6471C12.3529 64.4694 6.82234 70 0 70H57.6471C64.4694 70 70 64.4694 70 57.6471V0Z" fill="white"/></svg>')
+    width: 70px
+    height: 70px
+    position: absolute
+    right: 0
+    bottom: 0

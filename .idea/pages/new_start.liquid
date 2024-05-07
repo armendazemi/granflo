@@ -3,36 +3,210 @@
   {% include 'full_hero_slider' %}
 </top-element>
 
-<section class="default-padding-section">
-  <div class="container">
-    <div class="row">
-      <div class="col-12">
-        {{ 'start-top' | page_editable: class: 'col-12 col-lg-7 d-flex flex-column row-gap-xl row-gap-lg-lg' }}
+{% if lists.tjanster-start.rows.size > 0 %}
+  <section class="default-padding-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          {{ 'start-top' | page_editable: class: 'col-12 col-lg-7 d-flex flex-column row-gap-xl row-gap-lg-lg' }}
+        </div>
       </div>
-    </div>
 
-    <div class="row flex-wrap row-gap-xl margin-top-4xl">
-      {% for service in lists.tjanster-start.rows %}
-        <div class="col-12 col-lg-4">
-          <div class="gray-card bg-secondary radius-md padding-2xl padding-lg-3xl h-100">
-            <div class="gray-card__image-wrapper margin-bottom-xl">
-              <img src="{{service.ikon}}" alt="{{service.rubrik}}">
-            </div>
+      <div class="row flex-wrap row-gap-xl margin-top-4xl">
+        {% for service in lists.tjanster-start.rows %}
+          <div class="col-12 col-lg-4">
+            <div class="gray-card bg-secondary radius-md padding-2xl padding-lg-3xl h-100">
+              <div class="gray-card__image-wrapper margin-bottom-xl">
+                <img src="{{service.ikon}}" alt="{{service.rubrik}}">
+              </div>
 
-            <div class="gray-card__content d-flex flex-column row-gap-sm">
-              <p class="display-xs fw-bold">{{ service.rubrik }}</p>
-              <p>{{ service.text }}</p>
+              <div class="gray-card__content d-flex flex-column row-gap-sm">
+                <p class="display-xs fw-bold">{{ service.rubrik }}</p>
+                <p>{{ service.text }}</p>
+              </div>
             </div>
           </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+{% endif %}
+
+{% if lists.vara-tjanster-start.rows.size > 0 %}
+  <section class="default-padding-section bg-secondary">
+    <div class="container">
+      <div class="row align-items-center row-gap-xl">
+        <swiper-slider
+          id="services-slider"
+          class="col-12 col-lg-6"
+          slides="1"
+          autoplay="false">
+          <div class="swiper swiper-container">
+            <div class="swiper-wrapper">
+              {% for service in lists.vara-tjanster-start.rows %}
+                <div class="swiper-slide col-12">
+                  <img
+                    class="service-card__image"
+                    src="{{ service.bild }}"
+                    alt="{{ service.rubrik }}"
+                    loading="lazy">
+                  <div class="swiper-lazy-preloader"></div>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        </swiper-slider>
+
+        <div class="col-12 col-lg-6">
+          <div class="d-flex flex-column padding-left-lg-2xl padding-y-base">
+
+            {% for service in lists.vara-tjanster-start.rows %}
+              <accordion-item
+                data-slider-navigate="true"
+                data-slider-index="{{forloop.index}}"
+                data-slider-id="services-slider">
+                <button
+                  type="button"
+                  aria-expanded="false"
+                  aria-label="{{service.rubrik}}"
+                  class="accordion-item__button large">
+                  {{ service.rubrik }}
+                  <div class="accordion-item__icon">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 20 20"
+                      fill="none">
+                      <path
+                        d="M5 7.5L10 12.5L15 7.5"
+                        stroke="#030712"
+                        stroke-width="1.66667"
+                        stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    </svg>
+                  </div>
+                </button>
+                <div class="accordion-item__content">
+                  <div>
+                    {{ service.text }}
+                  </div>
+                </div>
+              </accordion-item>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endif %}
+
+{% capture callout %}{{ 'start-callout-text' | has_page_editable }}{%endcapture%}
+{% if callout == 'true' %}
+  <section class="default-padding-section">
+    <div class="container">
+      <div class="row align-items-center row-gap-4xl">
+        <div class="col-12 col-lg-6 d-flex flex-column row-gap-2xl padding-right-lg-2xl">
+          {{ 'start-callout-text' | page_editable: class: 'd-flex flex-column row-gap-lg' }}
+          <div class="row row-gap-xl">
+            {{ 'start-callout-projects' | page_editable: class: 'd-flex flex-column row-gap-xs col-12 col-lg-6' }}
+            {{ 'start-callout-employees' | page_editable: class: 'd-flex flex-column row-gap-xs col-12 col-lg-6' }}
+          </div>
+        </div>
+
+
+        {{ 'start-callout-image' | page_editable: class: 'col-12 col-lg-6' }}
+      </div>
+    </div>
+  </section>
+{% endif %}
+
+<seciton class="default-padding-section">
+  <div class="container">
+    <div class="row row-gap-3xl flex-wrap">
+      <h3 class="display-md fw-bold">{{ "Våra senaste projekt" | t }}</h3>
+      {% for project in lists.projekt.rows | limit: 4 %}
+        <div class="col-12 col-lg-6">
+          <a href="{{project.url}}" class="project-card text-decoration-none text-primary">
+            <div class="project-card__image-wrapper radius-md margin-bottom-lg">
+              <img
+                class="project-card__image w-100 object-fit-cover radius-md"
+                src="{{ project.bild_1 }}"
+                alt="{{ project.namn }}"
+                loading="lazy">
+            </div>
+
+            <div class="project-card__content d-flex flex-column row-gap-base">
+              <h4 class="display-xs fw-bold ">{{ project.langre_namn }}</h4>
+              <div class="d-flex flex-wrap gap-xs">
+                {% for category in project.kategorier %}
+                  <div class="badge-default fw-semi text-sm">
+                    {{ category.namn }}
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          </a>
         </div>
       {% endfor %}
+
+      <div class="col-12 d-flex justify-content-end">
+        <a href="/referenser" class="neutral-button-secondary text-decoratio-none">
+          {{ "Till alla projekt" | t }}
+        </a>
+      </div>
     </div>
   </div>
-</section>
+</seciton>
 
-<section class="default-padding-section bg-secondary">
+
+<section class="default-padding-section">
   <div class="container">
-    <div class="row"></div>
+    <div class="row row-gap-2xl">
+      <div class="col-12">
+        <h3 class="display-md fw-bold">{{ "Nyheter" | t }}</h3>
+      </div>
+
+      {% for article in articles.paginate.2 %}
+        <div class="col-12 col-lg-6">
+          <a
+            href="{{article.url}}"
+            title="{{article.title}}"
+            class="article-card text-decoration-none text-primary d-flex flex-wrap gap-lg">
+            <div class="article-card__image-wrapper radius-md col-12 col-lg-6">
+              <img
+                class="article-card__image w-100 object-fit-cover radius-md"
+                src="{{ article.preview }}"
+                alt="{{ article.title }}"
+                loading="lazy">
+
+              <div class="article-card__button neutral-button-primary circle position-absolute bottom-0 end-0 z-1 ">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="14"
+                  viewBox="0 0 18 14"
+                  fill="none">
+                  <path
+                    d="M1 7L17 7M17 7L11 1M17 7L11 13"
+                    stroke="white"
+                    stroke-width="1.66667"
+                    stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </div>
+            </div>
+
+            <div class="article-card__content d-flex flex-column row-gap-base col-12 col-lg-6">
+              <h4 class="display-xs fw-bold">{{ article.title }}</h4>
+              <p class="text-md text-secondary">{{ article.preview_text | strip_html }}</p>
+            </div>
+
+          </a>
+        </div>
+      {% endfor %}
+
+    </div>
   </div>
 </section>
 
