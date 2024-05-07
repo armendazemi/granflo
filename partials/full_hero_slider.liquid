@@ -1,11 +1,10 @@
-<section class="hero-section">
+<section class="hero-section {{ lists.hero-slider-start.rows.size }}">
   <swiper-slider
     slides="1"
-    pagination=".swiper-pagination--white"
     autoplay="true"
     delay="5000"
     fade="true"
-    loop="true">
+    loop="false">
     <div class="swiper swiper-container hero-full-slider">
       <div class="swiper-wrapper">
         {% for item in lists.hero-slider-start.rows %}
@@ -41,7 +40,8 @@
           </div>
         {% endfor %}
       </div>
-      <div class="swiper-pagination swiper-pagination--white d-flex column-gap-base justify-content-center align-items-center position-absolute bottom-0 margin-bottom-5xl z-3"></div>
+      <div
+        class="swiper-pagination swiper-pagination--white d-flex column-gap-base justify-content-center align-items-center position-absolute bottom-0 margin-bottom-5xl z-3"></div>
     </div>
   </swiper-slider>
 </section>

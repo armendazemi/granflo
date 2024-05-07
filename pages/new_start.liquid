@@ -17,7 +17,7 @@
           <div class="col-12 col-lg-4">
             <div class="gray-card bg-secondary radius-md padding-2xl padding-lg-3xl h-100">
               <div class="gray-card__image-wrapper margin-bottom-xl">
-                <img src="{{service.ikon}}" alt="{{service.rubrik}}">
+                <img src="{{ service.ikon }}" alt="{{ service.rubrik }}">
               </div>
 
               <div class="gray-card__content d-flex flex-column row-gap-sm">
@@ -63,12 +63,12 @@
             {% for service in lists.vara-tjanster-start.rows %}
               <accordion-item
                 data-slider-navigate="true"
-                data-slider-index="{{forloop.index}}"
+                data-slider-index="{{ forloop.index }}"
                 data-slider-id="services-slider">
                 <button
                   type="button"
                   aria-expanded="false"
-                  aria-label="{{service.rubrik}}"
+                  aria-label="{{ service.rubrik }}"
                   class="accordion-item__button large">
                   {{ service.rubrik }}
                   <div class="accordion-item__icon">
@@ -83,7 +83,7 @@
                         stroke="#030712"
                         stroke-width="1.66667"
                         stroke-linecap="round"
-                        stroke-linejoin="round" />
+                        stroke-linejoin="round"/>
                     </svg>
                   </div>
                 </button>
@@ -101,7 +101,7 @@
   </section>
 {% endif %}
 
-{% capture callout %}{{ 'start-callout-text' | has_page_editable }}{%endcapture%}
+{% capture callout %}{{ 'start-callout-text' | has_page_editable }}{% endcapture %}
 {% if callout == 'true' %}
   <section class="default-padding-section">
     <div class="container">
@@ -121,13 +121,13 @@
   </section>
 {% endif %}
 
-<seciton class="default-padding-section">
+<section class="default-padding-section">
   <div class="container">
     <div class="row row-gap-3xl flex-wrap">
       <h3 class="display-md fw-bold">{{ "Våra senaste projekt" | t }}</h3>
       {% for project in lists.projekt.rows | limit: 4 %}
         <div class="col-12 col-lg-6">
-          <a href="{{project.url}}" class="project-card text-decoration-none text-primary">
+          <a href="{{ project.url }}" class="project-card text-decoration-none text-primary">
             <div class="project-card__image-wrapper radius-md margin-bottom-lg">
               <img
                 class="project-card__image w-100 object-fit-cover radius-md"
@@ -151,13 +151,13 @@
       {% endfor %}
 
       <div class="col-12 d-flex justify-content-end">
-        <a href="/referenser" class="neutral-button-secondary text-decoratio-none">
+        <a href="/referenser" class="neutral-button-secondary text-decoration-none">
           {{ "Till alla projekt" | t }}
         </a>
       </div>
     </div>
   </div>
-</seciton>
+</section>
 
 
 <section class="default-padding-section">
@@ -170,9 +170,9 @@
       {% for article in articles.paginate.2 %}
         <div class="col-12 col-lg-6">
           <a
-            href="{{article.url}}"
-            title="{{article.title}}"
-            class="article-card text-decoration-none text-primary d-flex flex-wrap gap-lg">
+            href="{{ article.url }}"
+            title="{{ article.title }}"
+            class="article-card text-decoration-none text-primary d-flex gap-lg flex-column flex-lg-row">
             <div class="article-card__image-wrapper radius-md col-12 col-lg-6">
               <img
                 class="article-card__image w-100 object-fit-cover radius-md"
@@ -192,7 +192,7 @@
                     stroke="white"
                     stroke-width="1.66667"
                     stroke-linecap="round"
-                    stroke-linejoin="round" />
+                    stroke-linejoin="round"/>
                 </svg>
               </div>
             </div>
@@ -201,11 +201,29 @@
               <h4 class="display-xs fw-bold">{{ article.title }}</h4>
               <p class="text-md text-secondary">{{ article.preview_text | strip_html }}</p>
             </div>
-
           </a>
         </div>
       {% endfor %}
 
+      <div class="col-12 d-flex justify-content-end">
+        <a href="/nyheter" class="neutral-button-secondary text-decoration-none">
+          {{ "Till alla nyheter" | t }}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="default-padding-section bg-brand-default">
+  <div class="container">
+    <div class="row align-items-center justify-content-center row-gap-2xl">
+      {{ 'build-with-us' | global_editable: class: 'col-12 d-flex flex-column row-gap-base' }}
+
+      <div class="col-12 d-flex align-items-center justify-content-center">
+        <a href="/kontakt" class="neutral-button-primary text-decoration-none">
+          {{ "Kontakta oss" | t }}
+        </a>
+      </div>
     </div>
   </div>
 </section>

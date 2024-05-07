@@ -60,7 +60,7 @@ export default class SwiperSlider extends HTMLElement {
       },
 
       pagination: {
-        el: '.swiper-pagination',
+        el: `.${this.uniqueId} .swiper-pagination`,
         clickable: true,
       },
 
@@ -87,6 +87,7 @@ export default class SwiperSlider extends HTMLElement {
         },
       },
     };
+    console.log(config)
     return config;
   }
 
