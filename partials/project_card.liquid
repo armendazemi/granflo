@@ -1,0 +1,22 @@
+<div class="{%if cardSize %} {{cardSize}} {% else %}col-12 col-lg-6{% endif %}">
+  <a href="{{ project.url }}" class="project-card text-decoration-none text-primary">
+    <div class="project-card__image-wrapper radius-md margin-bottom-lg">
+      <img
+        class="project-card__image w-100 object-fit-cover radius-md"
+        src="{{ project.bild_1 }}"
+        alt="{{ project.namn }}"
+        loading="lazy">
+    </div>
+
+    <div class="project-card__content d-flex flex-column row-gap-base">
+      <h4 class="display-xs fw-bold ">{{ project.langre_namn }}</h4>
+      <div class="d-flex flex-wrap gap-xs">
+        {% for category in project.kategorier %}
+          <div class="badge-default fw-semi text-sm">
+            {{ category.namn }}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </a>
+</div>

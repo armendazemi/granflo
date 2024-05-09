@@ -1,0 +1,72 @@
+{% include 'new_header' %}
+<top-element>
+  <section class="default-padding-section">
+    <div class="container">
+      <div class="row">
+        {{ 'top-text' | page_editable: class: 'col-12 col-lg-7 d-flex flex-column row-gap-lg' }}
+      </div>
+    </div>
+  </section>
+</top-element>
+
+
+<section class="padding-bottom-5xl padding-bottom-lg-7xl">
+  <div class="container">
+    <div class="row row-gap-2xl row-gap-lg-3xl">
+      {% for article in articles.paginate.8 %}
+        {% include 'article_card' %}
+      {% endfor %}
+    </div>
+
+
+    {% capture has_previous %}{{ 'Nyare inlägg' | paginate_previous_link }}{% endcapture %}
+    <div class="row margin-top-2xl margin-top-lg-5xl padding-y-sm">
+      <div class="col">
+        {% if has_previous.size > 0 %}
+          <div class="paginate-link navigation-button px-0 justify-content-start">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none">
+              <path
+                d="M16.6668 10H3.3335M3.3335 10L8.3335 15M3.3335 10L8.3335 5"
+                stroke="#030712"
+                stroke-width="1.66667"
+                stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+            {{ 'Nyare inlägg' | paginate_previous_link }}
+          </div>
+        {% endif %}
+      </div>
+
+      {% capture has_next %}{{ 'Äldre inlägg' | paginate_next_link }}{% endcapture %}
+      <div class="col">
+
+        {% if has_next.size > 0 %}
+          <div class="paginate-link navigation-button justify-content-end px-0">
+            {{ 'Äldre inlägg' | paginate_next_link }}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none">
+              <path
+                d="M3.33301 10H16.6663M16.6663 10L11.6663 5M16.6663 10L11.6663 15"
+                stroke="#030712"
+                stroke-width="1.66667"
+                stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+
+{% include 'new_footer' %}

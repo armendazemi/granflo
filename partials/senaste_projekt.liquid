@@ -1,0 +1,16 @@
+<section class="default-padding-section">
+  <div class="container">
+    <div class="row row-gap-3xl flex-wrap">
+      <h3 class="display-md fw-bold">{{ "Våra senaste projekt" | t }}</h3>
+      {% for project in lists.projekt.rows | limit: 4 %}
+        {% include 'project_card' %}
+      {% endfor %}
+
+      <div class="col-12 d-flex justify-content-end">
+        <a href="/referenser" class="neutral-button-secondary text-decoration-none">
+          {{ "Till alla projekt" | t }}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

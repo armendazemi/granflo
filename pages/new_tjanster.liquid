@@ -1,0 +1,107 @@
+{% include 'new_header' %}
+
+
+<top-element>
+  <section class="single-hero default-padding-section position-relative">
+    {% for item in lists.hero-bilder-undersidor.rows %}
+      {% if item.sid-lank == request.path %}
+        <img
+          class="hero-full-image position-absolute object-fit-cover top-0 h-100 w-100 z-n1"
+          src="{{ item.mobil_bild }}"
+          srcset="{{ item.desktop_bild }} 992w"
+          loading="lazy"
+          alt="{{page.title}}">
+        <div class="image-overlay position-absolute top-0 start-0 w-100 h-100 bg-overlay-black-40 z-n1"></div>
+
+        <div class="container z-1">
+          <div class="row">
+            <div class="col-12 col-lg-6 text-white d-flex flex-column row-gap-lg padding-x-lg-2xl single-hero__text">
+              {{ item.text }}
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </section>
+</top-element>
+
+
+{% if lists.tjanster-tjanster.rows.size > 0 %}
+  <section class="default-padding-section">
+    <div class="container">
+      <div class="row row-gap-xl">
+        {% for service in lists.tjanster-tjanster.rows %}
+          <div class="col-12 col-lg-6">
+            <div class="gray-card bg-secondary radius-md padding-y-2xl padding-x-xl padding-y-lg-3xl padding-x-lg-2xl h-100">
+              <div class="gray-card__image-wrapper margin-bottom-xl">
+                <img src="{{ service.ikon }}" alt="{{ service.rubrik }}">
+              </div>
+
+              <div class="gray-card__content d-flex flex-column row-gap-sm">
+                <p class="display-xs fw-bold">{{ service.rubrik }}</p>
+                <p>{{ service.text }}</p>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+{% endif %}
+
+
+<section class="defaut-padding-section">
+  <div class="container">
+    {% for item in lists.featured-sections-tjanster.rows %}
+      {% assign modulo = forloop.index | modulo: 2 %}
+      <fade-in threshold="0.5">
+        <div class="row align-items-center row-gap-4xl padding-y-4xl padding-y-lg-6xl">
+
+          <div class="callout__text col-12 col-lg-6 d-flex flex-column row-gap-lg {% if modulo == 0 %} order-lg-1 padding-left-lg-2xl {%else %}padding-right-lg-2xl{% endif %}">
+            <h2 class="display-md fw-bold">{{ item.rubrik }}</h2>
+            <p class="text-secondary">
+              {{ item.text }}
+            </p>
+          </div>
+          <div class="callout__image-wrapper col-12 col-lg-6 {% if modulo == 0 %}order-lg-0 {% endif %}">
+            <img
+              height="500"
+              width="636"
+              src="{{item.bild}}"
+              alt="Industrilokaler"
+              loading="lazy">
+          </div>
+        </div>
+      </fade-in>
+    {% endfor %}
+  </div>
+</section>
+
+
+{% capture show_section %}{{'gray-box-1' | has_page_editable}}{% endcapture %}
+{% if show_section == 'true' %}
+  <section class="default-padding-section">
+    <div class="container">
+      <div class="row row-gap-lg">
+        {% for i in (1..4) %}
+          {% assign editable_name = 'gray-box-' | append: forloop.index %}
+          {% capture has_content %}{{editable_name | has_page_editable}}{% endcapture %}
+          {% if has_content == 'true' %}
+            <div class="col-12 col-lg-6">
+              <div class="gray-card bg-secondary radius-md padding-y-2xl padding-x-xl padding-y-lg-3xl padding-x-lg-2xl h-100">
+                {{ editable_name | page_editable }}
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+{% endif %}
+
+
+{% include 'senaste_projekt' %}
+
+{% include 'bygga_med_oss' %}
+
+{% include 'new_footer' %}

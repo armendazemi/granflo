@@ -192,13 +192,14 @@ button
 .tab-default
   @extend %button-base
   @include fontSizePxToRem(16)
+  background-color: $background-secondary
   color: $text-primary
   font-weight: 500
   transition: all 200ms linear
 
   &:hover,
   &.active
-    background-color: $background-brand-default
+    background-color: $background-brand-default !important
 
 
 .breadcrumb-link

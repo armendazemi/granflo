@@ -1,0 +1,97 @@
+{% include 'new_header' %}
+<top-element>
+  <section class="default-padding-section">
+    <div class="container">
+      <div class="row">
+        {{ 'top-text' | page_editable: class: 'col-12 col-lg-7 d-flex flex-column row-gap-lg' }}
+      </div>
+    </div>
+  </section>
+</top-element>
+
+<section class="padding-y-base">
+  <div class="container">
+    <swiper-slider freeMode="true">
+      <div class="swiper swiper-container">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide w-auto">
+            <a class="tab-default fw-semi w-fit-content cursor active" data-category="all">{{ "Alla" | t }}</a>
+          </div>
+
+          {% for category in lists.kategorier.rows %}
+            <div class="swiper-slide w-auto">
+              <a class="tab-default fw-semi w-fit-content cursor" data-category="{{ category.namn }}">{{ category.namn }}</a>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </swiper-slider>
+  </div>
+</section>
+
+
+<section class="padding-top-xl padding-bottom-5xl padding-bottom-lg-7xl">
+  <div class="container">
+    <div class="row row-gap-2xl row-gap-lg-3xl">
+      {% for project in lists.projekt.rows %}
+        {% if project.bild_1 == "" or project.bild_1 == null %}
+          {% continue %}
+        {% else %}
+          <div class="col-12 col-lg-6" data-categories="{% for cat in project.kategorier %}{{ cat.namn }} {% endfor %}">
+            {% assign cardSize = 'col-12' %}
+            {% include 'project_card' %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% include 'bygga_med_oss' %}
+{% include 'new_footer' %}
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const tabs = document.querySelectorAll('.tab-default');
+    const projects = document.querySelectorAll('div[data-categories]');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', handleTabFilter);
+      });
+
+    function handleTabFilter(e) {
+      const targetCategory = e.target.dataset.category;
+      if (targetCategory === 'all'){
+        tabs.forEach(tab => tab.classList.remove('active'));
+        filterProjects('all');
+        this.classList.toggle('active');
+      }else {
+        tabs.forEach(tab => tab.classList.remove('active'));
+        this.classList.toggle('active');
+        filterProjects(targetCategory);
+      }
+    }
+
+    function filterProjects(category) {
+      if (category === 'all') {
+        projects.forEach(project => project.style.display = 'block');
+      }else {
+        projects.forEach(project => {
+          const projectCategories = project.dataset.categories;
+          if (projectCategories.includes(category)) {
+            project.style.display = 'block';
+          }else {
+            project.style.display = 'none';
+          }
+
+        });
+      }
+    }
+        
+    });
+</script>
+
+
+{% comment %}
+{% endcomment %}

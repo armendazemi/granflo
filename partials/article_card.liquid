@@ -1,0 +1,35 @@
+<article class="col-12 col-lg-6">
+  <a
+    href="{{ article.url }}"
+    title="{{ article.title }}"
+    class="article-card text-decoration-none text-primary d-flex gap-lg flex-column flex-lg-row">
+    <div class="article-card__image-wrapper radius-md col-12 col-lg-6">
+      <img
+        class="article-card__image w-100 object-fit-cover radius-md"
+        src="{{ article.preview }}"
+        alt="{{ article.title }}"
+        loading="lazy">
+
+      <div class="article-card__button neutral-button-primary circle position-absolute bottom-0 end-0 z-1 ">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="18"
+          height="14"
+          viewBox="0 0 18 14"
+          fill="none">
+          <path
+            d="M1 7L17 7M17 7L11 1M17 7L11 13"
+            stroke="white"
+            stroke-width="1.66667"
+            stroke-linecap="round"
+            stroke-linejoin="round" />
+        </svg>
+      </div>
+    </div>
+
+    <div class="article-card__content d-flex flex-column row-gap-base col-12 col-lg-6">
+      <h4 class="display-xs fw-bold">{{ article.title }}</h4>
+      <p class="text-md text-secondary">{{ article.preview_text | strip_html | truncate: 200 }}</p>
+    </div>
+  </a>
+</article>

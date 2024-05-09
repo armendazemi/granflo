@@ -1,0 +1,154 @@
+{% include 'new_header' %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+
+<top-element>
+  <section class="padding-top-5xl padding-top-lg-6xl">
+    <div class="container">
+      <div class="row row-gap-lg">
+        <div class="col-12 col-lg-7 d-flex flex-column row-gap-lg">
+          <a href="/referenser" class="default-link align-items-center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none">
+              <path
+                d="M16.6668 10H3.3335M3.3335 10L8.3335 15M3.3335 10L8.3335 5"
+                stroke="#030712"
+                stroke-width="1.66667"
+                stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+
+            {{ 'Alla projekt' | t }}
+          </a>
+        </div>
+
+        <div class="col-12 col-lg-7 d-flex flex-column row-gap-lg">
+          <h1 class="display-lg fw-semi">{{ row.langre_namn }}</h1>
+          <p class="text-secondary">{{ row.kort_beskrivning }}</p>
+          <div class="d-flex flex-wrap gap-xs">
+            {% for category in row.kategorier %}
+              <div class="badge-default fw-semi text-sm">
+                {{ category.namn }}
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</top-element>
+
+
+<section class="project-page-image margin-top-4xl">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 project-page-image-wrapper">
+        <img
+          class="project-page__image w-100 object-fit-cover"
+          src="{{ row.bild_1 }}"
+          alt="{{ row.namn }}"
+          loading="lazy">
+      </div>
+    </div>
+
+    <div class="row row-gap-lg padding-y-4xl project-page-info">
+      <div class="col-12 col-lg-4 d-flex flex-column">
+        <p>{{ "Referens" | t }}</p>
+        <p class="fw-bold">{{ row.referensperson }}</p>
+        <p class="text-xs">-{{ row.refperspos }}</p>
+
+      </div>
+
+      <div class="col-12 col-lg-4 d-flex flex-column">
+        <p>{{ "Plats" | t }}</p>
+        <p class="fw-bold">{{ row.omrade }}</p>
+      </div>
+
+      <div class="col-12 col-lg-4 d-flex flex-column">
+        <p>{{ "Tid" | t }}</p>
+        <p class="fw-bold">{{ row.tid }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="default-padding-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-lg-7 d-flex flex-column row-gap-lg">
+        <h2 class="display-lg fw-bold">{{ "Beskrivning" | t }}</h2>
+        <p class="text-secondayr">{{ row.beskrivning }}</p>
+      </div>
+    </div>
+
+    <div class="row row-gap-xl margin-top-4xl margin-top-4xl margin-top-lg-5xl">
+      {% if row.bild_1.size > 0 %}
+        <div class="col-12 col-lg-6 ">
+          <a data-fancybox="gallery" href="{{ row.bild_1 }}">
+            <img class="w-100 project-page__site-image" src="{{ row.bild_1 }}">
+          </a>
+        </div>
+      {% endif %}
+      {% if row.bild_2.size > 0 %}
+        <div class="col-12 col-lg-6">
+          <a data-fancybox="gallery" href="{{ row.bild_2 }}">
+            <img class="w-100 project-page__site-image" src="{{ row.bild_2 }}">
+          </a>
+        </div>
+      {% endif %}
+      {% if row.bild_3.size > 0 %}
+        <div class="col-12 col-lg-6">
+          <a data-fancybox="gallery" href="{{ row.bild_3 }}">
+            <img class="w-100 project-page__site-image" src="{{ row.bild_3 }}">
+          </a>
+        </div>
+      {% endif %}
+      {% if row.bild_4.size > 0 %}
+        <div class="col-12 col-lg-6">
+          <a data-fancybox="gallery" href="{{ row.bild_4 }}">
+            <img class="w-100 project-page__site-image" src="{{ row.bild_4 }}">
+          </a>
+        </div>
+      {% endif %}
+      {% if row.bild_5.size > 0 %}
+        <div class="col-12 col-lg-6">
+          <a data-fancybox="gallery" href="{{ row.bild_5}}">
+            <img class="w-100 project-page__site-image" src="{{ row.bild_5 }}">
+          </a>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% include 'bygga_med_oss' %}
+
+<section class="default-padding-section">
+  <div class="container">
+    <div class="row row-gap-3xl flex-wrap">
+      <h3 class="display-md fw-bold">{{ "Våra senaste projekt" | t }}</h3>
+      {% for project in lists.projekt.rows | limit: 3 %}
+        {% if project.row_id == row.row_id %}
+          {% continue %}
+        {% else %}
+          {% if forloop.index <= 3 %}
+            {% include 'project_card' %}
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+
+      <div class="col-12 d-flex justify-content-end">
+        <a href="/referenser" class="neutral-button-secondary text-decoration-none">
+          {{ "Till alla projekt" | t }}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% include 'new_footer' %}
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>

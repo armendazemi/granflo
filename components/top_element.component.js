@@ -7,6 +7,7 @@ export default class TopElement extends HTMLElement {
 		// Check if the first child has a positon of aboslute or fixed
 		if (this.firstElementChild) {
 			const firstChildPosition = window.getComputedStyle(this.firstElementChild).position;
+			console.log(firstChildPosition);
 			if (firstChildPosition === 'absolute' || firstChildPosition === 'fixed') {
 				this.style.position = firstChildPosition;
 				this.style.top = '0';

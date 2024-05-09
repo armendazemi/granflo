@@ -132,6 +132,12 @@ accordion-item.open
   @media (min-width: 992px)
     padding-top: $spacing-6xl
     padding-bottom: $spacing-6xl
+
+.w-fit-content
+  width: fit-content
+
+.cursor
+  cursor: pointer
 // ------------------------------
 // Sliders
 // ------------------------------
@@ -276,6 +282,8 @@ accordion-item.open
   width: 64px
   flex-grow: 0
   flex-shrink: 0
+  img
+    width: 100%
 
 .service-card__image
   height: 343px
@@ -327,10 +335,71 @@ accordion-item.open
     bottom: 0
 
 
+// ------------------------------
+// TJÄNSTER
+// ------------------------------
+.single-hero__text
+  h1
+    @extend .display-lg
+    letter-spacing: -0.44px
+
+.callout__image-wrapper
+  aspect-ratio: 1
+  overflow: hidden
+
+  img
+    object-fit: cover
+    width: 100%
+
+// ------------------------------
+// VÅRA PROJEKT
+// ------------------------------
+.project-category-filter
+  list-style: none
+  margin: 0
+
+
+// ------------------------------
+// PROJEKT SIDA
+//-------------------------------
+.project-page-image
+  background: rgb(255,255,255)
+  background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 50%, rgba(255,204,41,1) 50%, rgba(255,204,41,1) 100%)
+
+
+.project-page-image-wrapper
+  padding: 0
+  @media (min-width: 992px)
+    padding: 0 12px
+
+
+.project-page__image
+  aspect-ratio: 3/2
+
+  @media  ( min-width: 992px)
+    aspect-ratio: 2/1
+
+.project-page-info
+  background: $background-brand-default
+  @media   ( min-width: 992px)
+    background: transparent
+    
+.project-page__site-image
+  aspect-ratio: 4/3
+  object-fit: cover
 
 
 
-
+//--------------------------
+// ARTIKLAR
+//--------------------------
+.paginate-link
+  display: flex
+  align-items: center
+  column-gap: $spacing-2xs
+  a
+    font-weight: 600
+    @extend .default-link
 
 // ------------------------------
 // FOOTER
