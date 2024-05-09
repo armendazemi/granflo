@@ -10,6 +10,7 @@
 // ------------------------------
 html, body
   height: 100%
+  scroll-behavior: smooth
 
 body
   display: flex
@@ -373,7 +374,8 @@ accordion-item.open
     padding: 0 12px
 
 
-.project-page__image
+.project-page__image,
+.sub-page-image
   aspect-ratio: 3/2
 
   @media  ( min-width: 992px)
@@ -401,6 +403,22 @@ accordion-item.open
     font-weight: 600
     @extend .default-link
 
+
+//--------------------------
+// OM OSS
+//--------------------------
+.neutral-buttons-group
+  p:first-of-type
+    a
+      @extend .neutral-button-secondary
+
+  p:last-of-type
+    a
+      @extend .neutral-button-primary
+
+.om-oss-projekt-yellow
+  a
+    @extend .neutral-button-primary
 // ------------------------------
 // FOOTER
 // ------------------------------

@@ -3,7 +3,7 @@
     href="{{ article.url }}"
     title="{{ article.title }}"
     class="article-card text-decoration-none text-primary d-flex gap-lg flex-column flex-lg-row">
-    <div class="article-card__image-wrapper radius-md col-12 col-lg-6">
+    <div class="article-card__image-wrapper radius-md col">
       <img
         class="article-card__image w-100 object-fit-cover radius-md"
         src="{{ article.preview }}"
@@ -27,7 +27,7 @@
       </div>
     </div>
 
-    <div class="article-card__content d-flex flex-column row-gap-base col-12 col-lg-6">
+    <div class="article-card__content d-flex flex-column row-gap-base col">
       <h4 class="display-xs fw-bold">{{ article.title }}</h4>
       <p class="text-md text-secondary">{{ article.preview_text | strip_html | truncate: 200 }}</p>
     </div>
