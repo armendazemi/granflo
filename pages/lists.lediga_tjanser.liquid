@@ -1,0 +1,88 @@
+{% include 'new_header' %}
+<top-element>
+  <section class="single-hero default-padding-section position-relative">
+    <img
+      class="hero-full-image position-absolute object-fit-cover top-0 h-100 w-100 z-n1"
+      src="{{ row.mobil_bild }}"
+      srcset="{{ row.desktop_bild }} 992w"
+      loading="lazy"
+      alt="{{page.title}}">
+    <div class="image-overlay position-absolute top-0 start-0 w-100 h-100 bg-overlay-black-40 z-n1"></div>
+
+    <div class="container z-1">
+      <div class="row row-gap-2xl">
+        <div class="col-12 col-lg-7 text-white d-flex flex-column row-gap-lg padding-x-lg-2xl single-hero__text">
+          <a href="/karriar" class="default-link text-white">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none">
+              <path
+                d="M16.6673 10H3.33398M3.33398 10L8.33398 15M3.33398 10L8.33398 5"
+                stroke="white"
+                stroke-width="1.66667"
+                stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+            {{ "Alla lediga tjänster" | t }}
+          </a>
+
+          <h1 class="display-lg fw-bold">{{ row.tjanst }}</h1>
+          <p class="text-lg">{{ row.kort_beskrivning }}</p>
+        </div>
+
+        <div class="col-12 col-lg-5 d-flex align-items-end justify-content-lg-end">
+          <a href="#apply-section" class="brand-button-primary">{{ "Ansök här" | t }}</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</top-element>
+
+<section class="default-padding-section">
+  <div class="container">
+    <div class="row row-gap-2xl">
+      <div class="col-12 col-lg-8">
+        {{ row.content }}
+      </div>
+      <div class="col-12 col-lg-4">
+        <div class="gray-card bg-secondary d-flex flex-column row-gap-sm radius-md padding-y-2xl padding-x-xl padding-y-lg-3xl padding-x-lg-2xl">
+          <p class="text-lg fw-bold">{{ "Bra att veta" | t }}</p>
+          <p class="text-md fw-semi">{{ 'Arbetsort' | t }}:
+            <span class="text-md fw-regular">{{ row.ort }}</span>
+          </p>
+          <p class="text-md fw-semi">{{ 'Kontaktperson' | t }}:
+            <span class="text-md fw-regular">{{ row.kontaktperson }}</span>
+          </p>
+          <p class="text-md fw-semi">{{ 'Arbetstid' | t }}:
+            <span class="text-md fw-regular">{{ row.arbetstid }}</span>
+          </p>
+          <p class="text-md fw-semi">{{ 'Sista ansökningsdatum' | t }}:
+            <span class="text-md fw-regular">{{ row.ansoknings_datum }}</span>
+          </p>
+          <p class="text-md fw-semi">{{ 'Tillträde' | t }}:
+            <span class="text-md fw-regular">{{ row.tilltrade }}</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="default-padding-section bg-secondary">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 d-flex flex-column  row-gap-base">
+        <h3 class="display-md fw-bold text-center">{{ "Ansökan" | t }}</h3>
+        <p class="text-secondary text-lg text-center">{{ "Fyll i uppgifterna nedan för att söda denna tjänst" | t }}</p>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+{% include 'new_footer' %}

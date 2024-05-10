@@ -1,0 +1,103 @@
+{% include 'new_header' %}
+
+<top-element>
+  <section class="single-hero default-padding-section position-relative">
+    {% for item in lists.hero-bilder-undersidor.rows %}
+      {% if item.sid-lank == request.path %}
+        <img
+          class="hero-full-image position-absolute object-fit-cover top-0 h-100 w-100 z-n1"
+          src="{{ item.mobil_bild }}"
+          srcset="{{ item.desktop_bild }} 992w"
+          loading="lazy"
+          alt="{{page.title}}">
+        <div class="image-overlay position-absolute top-0 start-0 w-100 h-100 bg-overlay-black-40 z-n1"></div>
+
+        <div class="container z-1">
+          <div class="row row-gap-2xl">
+            <div class="col-12 col-lg-7 text-white d-flex flex-column row-gap-lg padding-x-lg-2xl single-hero__text">
+              {{ item.text }}
+            </div>
+
+            <div class="col-12 col-lg-5 d-flex align-items-end justify-content-lg-end">
+              <a href="#available-positions" class="brand-button-primary">{{ "Lediga tjänster" | t }}</a>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </section>
+</top-element>
+
+
+<section class="default-padding-section">
+  <div class="container">
+    <div class="row align-items-center row-gap-4xl">
+      {{ 'callout-text' | page_editable: class: 'col-12 col-lg-6 d-flex flex-column row-gap-lg padding-right-lg-2xl' }}
+      {{ 'callout-image' | page_editable: class: 'col-12 col-lg-6' }}
+    </div>
+  </div>
+</section>
+
+<section class="default-padding-section bg-secondary">
+  <div class="container">
+    <div class="row row-gap-2xl">
+      {{ 'callout-rounded-image' | page_editable: class: 'col-12 col-lg-4 testimonial__rounded-image' }}
+      {{ 'callout-rounded-text' | page_editable: class: 'col-12 col-lg-6 d-flex flex-column padding-left-lg-2xl' }}
+    </div>
+  </div>
+</section>
+
+<section class="default-padding-section" id="available-positions">
+  <div class="container">
+    <div class="row row-gap-4xl">
+      {{ 'available-positions-text' | page_editable: class: 'col-12 col-lg-6 d-flex flex-column row-gap-lg' }}
+
+      <div class="col-12 col-lg-6 d-flex flex-column row-gap-xl">
+        {% for tjanst in lists.lediga-tjanster.rows %}
+          <div class="gray-card bg-secondary d-flex flex-column row-gap-lg radius-md padding-y-2xl padding-x-xl padding-y-lg-3xl padding-x-lg-2xl">
+            <div class="gray-card__content d-flex flex-column row-gap-sm">
+              <p class="display-xs fw-bold">{{ tjanst.tjanst }}</p>
+              <p class="text-secondary">{{ tjanst.kort_beskrivning }}</p>
+            </div>
+
+            <div class="d-flex gap-base align-items-center flex-wrap">
+              <div class="d-flex gap-xs">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none">
+                  <path d="M10.0007 10.0001C10.459 10.0001 10.8513 9.83689 11.1777 9.5105C11.5041 9.18411 11.6673 8.79175 11.6673 8.33342C11.6673 7.87508 11.5041 7.48272 11.1777 7.15633C10.8513 6.82994 10.459 6.66675 10.0007 6.66675C9.54232 6.66675 9.14996 6.82994 8.82357 7.15633C8.49718 7.48272 8.33398 7.87508 8.33398 8.33342C8.33398 8.79175 8.49718 9.18411 8.82357 9.5105C9.14996 9.83689 9.54232 10.0001 10.0007 10.0001ZM10.0007 18.3334C7.76454 16.4306 6.0944 14.6633 4.99023 13.0313C3.88607 11.3994 3.33398 9.88897 3.33398 8.50008C3.33398 6.41675 4.00412 4.75703 5.3444 3.52091C6.68468 2.2848 8.23676 1.66675 10.0007 1.66675C11.7645 1.66675 13.3166 2.2848 14.6569 3.52091C15.9972 4.75703 16.6673 6.41675 16.6673 8.50008C16.6673 9.88897 16.1152 11.3994 15.0111 13.0313C13.9069 14.6633 12.2368 16.4306 10.0007 18.3334Z" fill="#030712" />
+                </svg>
+                {{ tjanst.ort }}
+              </div>
+
+              <div class="d-flex gap-xs">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none">
+                  <path d="M12.7494 13.9167L13.916 12.7501L10.8327 9.66675V5.83342H9.16602V10.3334L12.7494 13.9167ZM9.99935 18.3334C8.84657 18.3334 7.76324 18.1147 6.74935 17.6772C5.73546 17.2397 4.85352 16.6459 4.10352 15.8959C3.35352 15.1459 2.75977 14.264 2.32227 13.2501C1.88477 12.2362 1.66602 11.1529 1.66602 10.0001C1.66602 8.8473 1.88477 7.76397 2.32227 6.75008C2.75977 5.73619 3.35352 4.85425 4.10352 4.10425C4.85352 3.35425 5.73546 2.7605 6.74935 2.323C7.76324 1.8855 8.84657 1.66675 9.99935 1.66675C11.1521 1.66675 12.2355 1.8855 13.2494 2.323C14.2632 2.7605 15.1452 3.35425 15.8952 4.10425C16.6452 4.85425 17.2389 5.73619 17.6764 6.75008C18.1139 7.76397 18.3327 8.8473 18.3327 10.0001C18.3327 11.1529 18.1139 12.2362 17.6764 13.2501C17.2389 14.264 16.6452 15.1459 15.8952 15.8959C15.1452 16.6459 14.2632 17.2397 13.2494 17.6772C12.2355 18.1147 11.1521 18.3334 9.99935 18.3334Z" fill="#030712" />
+                </svg>
+                {{ tjanst.arbetstid }}
+              </div>
+
+              <div class="ms-lg-auto">
+                <a href="{{ tjanst.url }}" class="neutral-button-secondary">{{ "Läs mer och ansök" | t }}</a>
+              </div>
+
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% include 'bygga_med_oss' %}
+
+
+{% include 'new_footer' %}
