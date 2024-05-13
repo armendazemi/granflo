@@ -212,6 +212,30 @@ drag-file
   img
     object-fit: cover
     width: 100%
+
+.display-md-heading
+  h1, h2, h3, h4, h5
+    @extend .display-md
+
+.display-lg-heading
+  h1, h2, h3, h4, h5
+    @extend .display-lg
+
+.display-xs-heading
+  h1, h2, h3, h4, h5
+    @extend .display-xs
+
+.text-lg-p
+  p
+    @extend .text-lg
+
+.text-md-p
+  p
+    @extend .text-md
+
+.p-semi
+  p
+    font-weight: 600
 // ------------------------------
 // Sliders
 // ------------------------------
@@ -410,13 +434,23 @@ drag-file
   &::after
     content: ''
     display: block
-    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" viewBox="0 0 70 70" fill="none"><path d="M70 0C70 6.82234 64.4694 12.3529 57.6471 12.3529H43.1629L43.1676 12.4206C42.5097 12.3758 41.8458 12.3529 41.1765 12.3529C25.2577 12.3529 12.3529 25.2577 12.3529 41.1765C12.3529 41.8458 12.3758 42.5097 12.4206 43.1676L12.3529 43.1629V57.6471C12.3529 64.4694 6.82234 70 0 70H57.6471C64.4694 70 70 64.4694 70 57.6471V0Z" fill="white"/></svg>')
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" viewBox="0 0 70 70" fill="none"><path d="M70 0C70 6.82234 64.4694 12.3529 57.6471 12.3529H43.1629L43.1676 12.4206C42.5097 12.3758 41.8458 12.3529 41.1765 12.3529C25.2577 12.3529 12.3529 25.2577 12.3529 41.1765C12.3529 41.8458 12.3758 42.5097 12.4206 43.1676L12.3529 43.1629V57.6471C12.3529 64.4694 6.82234 70 0 70H57.6471C64.4694 70 70 64.4694 70 57.6471V0Z" fill="%23EEF0F0"/></svg>')
     width: 70px
     height: 70px
     position: absolute
     right: 0
     bottom: 0
 
+.start-callout-projects,
+.start-callout-employees
+  h1, h2, h3.h4, h5
+    @extend .display-lg
+    color: $text-brand-default
+    font-weight: 700
+
+  p
+    @extend .text-md
+    color: $text-secondary
 
 // ------------------------------
 // TJÄNSTER
@@ -539,6 +573,7 @@ drag-file
 // ------------------------------
 .employee__image-wrapper
   height: 343px
+
   img
     object-fit: cover
     width: 100%
