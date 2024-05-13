@@ -62,6 +62,7 @@
 
             {% for service in lists.vara-tjanster-start.rows %}
               <accordion-item
+                class="{% if forloop.first %} open {% endif %}"
                 data-slider-navigate="true"
                 data-slider-index="{{ forloop.index }}"
                 data-slider-id="services-slider">
@@ -124,7 +125,7 @@
 {% include 'senaste_projekt' %}
 
 
-<section class="default-padding-section">
+<section class="default-padding-section bg-secondary">
   <div class="container">
     <div class="row row-gap-2xl">
       <div class="col-12">

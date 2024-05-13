@@ -6,7 +6,7 @@
     <div class="container">
       <div class="row row-gap-4xl">
         <div class="col-12 col-lg-7 d-flex flex-column row-gap-lg align-items-start">
-          <a href="/nyheter" class="default-link text-primary fw-semi align-items-center">
+          <a href="/nyheter" class="default-link text-primary fw-regular align-items-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="20"
@@ -23,14 +23,14 @@
             {{ "Alla nyheter" | t }}
           </a>
 
-          <h1 class="display-lg">
+          <h1 class="display-lg fw-semi">
             {{ article.title }}
           </h1>
           <p class="text-lg text-secondary">
-            {{ article.preview_text }}
+            {{ article.preview_text | strip_html }}
           </p>
 
-          <div class="badge-default fw-semi">
+          <div class="badge-default fw-semi text-sm">
             {{ 'Publicerad' | t }} {{ article.published_at | date: "%d %b %y" }}
           </div>
 

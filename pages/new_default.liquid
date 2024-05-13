@@ -1,0 +1,15 @@
+{% include 'new_header' %}
+<top-element>
+  <section class="default-padding-section">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 col-lg-7">
+          <p class="text-lg fw-semi text-center margin-bottom-xl">{{ page.title }}</p>
+          {{ 'default-top-text' | page_editable: class: 'default-page-content' }}
+        </div>
+      </div>
+    </div>
+  </section>
+</top-element>
+
+{% include 'new_footer' %}

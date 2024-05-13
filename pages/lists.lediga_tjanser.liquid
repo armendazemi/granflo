@@ -74,7 +74,7 @@
 </section>
 
 
-<section class="default-padding-section bg-secondary">
+<section class="default-padding-section bg-secondary" id="apply-section">
   <div class="container">
     <div class="row">
       <div class="col-12 d-flex flex-column  row-gap-base margin-bottom-2xl margin-bottom-lg-4xl">
@@ -95,7 +95,7 @@
           <input type="hidden" name="tjanst" value="{{ row.tjanst }}">
           <input type="hidden" name="tjanst_ort" value="{{ row.ort }}">
 
-          <div class="row row-gap-2xl">
+          <div class="d-flex flex-wrap column-gap-sm row-gap-2xl">
             <div class="input-group has-validation col-12 col-lg">
               <label
                 aria-label="Förnamn"
@@ -133,7 +133,7 @@
             </div>
           </div>
 
-          <div class="row row-gap-2xl">
+          <div class="d-flex flex-wrap column-gap-sm row-gap-2xl">
             <div class="input-group has-validation col-12 col-lg">
               <label
                 aria-label="Epost"
@@ -222,13 +222,12 @@
               aria-hidden="true"
               accept=".pdf,.doc,.docx, .txt"
               multiple
-              >
+            >
 
             <div id="drop-area" class=" bg-white radius-md input-default justify-content-center padding-x-3xs">
               <p class="drop-area__text text-center text-md">{{ 'Dra en fil hit eller' }} <span
                   class="text-md fw-semi">{{ "ladda upp fil" | t }}</span></p>
             </div>
-
           </drag-file>
 
 
@@ -251,15 +250,24 @@
             ></textarea>
           </div>
 
-          <label class="text-sm fw-semi d-flex gap-3xs w-100">
+          <div class="input-group has-validation d-flex gap-sm">
             <input
+              id="policy"
               class="checkbox-default checkbox--brand-primary"
               type="checkbox"
               name="gdpr"
               required>
-            {{ 'Du godkänner vår' | t }}
-            <a href="/integritetspolicy">{{ 'integritetspolicy' | t }}</a>
-          </label>
+            <label
+              class="d-flex align-items-center gap-3xs text-sm "
+              aria-label="integritetspolicy"
+              for="policy">
+              {{ 'Du godkänner vår ' | t }}
+              <a href="/integritetspolicy" class="default-link">{{ 'integritetspolicy' | t }}</a>
+            </label>
+            <div class="invalid-feedback">
+              {{ "Du måste godkänna vår integritetspolicy." | t }}
+            </div>
+          </div>
 
           <div class="col-12 margin-top-base">
             <button type="submit" class="brand-button-primary button-large w-100">{{ "Skicka" | t }}</button>

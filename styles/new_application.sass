@@ -160,8 +160,8 @@ drag-file
   transform: translateX(-100%)
 
 .default-padding-section
-  padding-top: $spacing-5xl
-  padding-bottom: $spacing-5xl
+  padding-top: $spacing-4xl
+  padding-bottom: $spacing-4xl
 
   @media (min-width: 992px)
     padding-top: $spacing-6xl
@@ -172,6 +172,46 @@ drag-file
 
 .cursor
   cursor: pointer
+
+.neutral-buttons-group
+  p:first-of-type
+    a
+      @extend .neutral-button-secondary
+
+  p:last-of-type
+    a
+      @extend .neutral-button-primary
+
+.om-oss-projekt-yellow
+  a
+    @extend .neutral-button-primary
+
+.neutral-primary-group
+  a
+    @extend .neutral-button-primary
+
+.neutral-secondary-group
+  a
+    @extend .neutral-button-secondary
+
+.border-1
+  border: 1px solid $border-divider
+
+.image-wrapper
+  aspect-ratio: 1
+  overflow: hidden
+
+  img
+    object-fit: cover
+    width: 100%
+
+.image-wrapper--3x2
+  aspect-ratio: 3/2
+  overflow: hidden
+
+  img
+    object-fit: cover
+    width: 100%
 // ------------------------------
 // Sliders
 // ------------------------------
@@ -278,12 +318,17 @@ drag-file
 .site-menu-item
   a
     @extend .navigation-button
+    @extend .display-xs
     justify-content: flex-start
     padding: $spacing-sm $spacing-base
     text-decoration: none
     color: $text-primary
     width: 100%
+    @media (min-width: 992px)
+      font-size: 18px
 
+.site-menu-item-active
+  text-decoration: underline !important
 
 #mobile-menu-toggler
   display: block
@@ -303,7 +348,7 @@ drag-file
 
 // ------------------------------
 // START
-  // ------------------------------
+// ------------------------------
 
 .hero-full-slider__image
   aspect-ratio: 0.58
@@ -415,8 +460,17 @@ drag-file
 .sub-page-image
   aspect-ratio: 3/2
 
+  p
+    height: 100%
+    width: 100%
+
   @media (min-width: 992px)
     aspect-ratio: 2/1
+
+  img
+    object-fit: cover
+    width: 100%
+    height: 100%
 
 .project-page-info
   background: $background-brand-default
@@ -457,31 +511,38 @@ drag-file
   padding: $spacing-lg
   border-radius: $radius-lg
 
-//--------------------------
-// OM OSS
-//--------------------------
-.neutral-buttons-group
-  p:first-of-type
-    a
-      @extend .neutral-button-secondary
-
-  p:last-of-type
-    a
-      @extend .neutral-button-primary
-
-.om-oss-projekt-yellow
-  a
-    @extend .neutral-button-primary
-
 
 //--------------------------
-// OM OSS
+// KARRIÄR
 //--------------------------
 .testimonial__rounded-image
   img
     aspect-ratio: 1
     border-bottom-left-radius: 50%
     object-fit: cover
+
+// ------------------------------
+// DEFAULT PAGE
+// ------------------------------
+.default-page-content
+  img
+    object-fit: cover
+    max-height: 240px
+    @media (min-width: 992px)
+      max-height: 552px
+
+  a
+    @extend .default-link
+    font-weight: 600
+// ------------------------------
+// KONTAKT
+// ------------------------------
+.employee__image-wrapper
+  height: 343px
+  img
+    object-fit: cover
+    width: 100%
+    height: 100%
 // ------------------------------
 // FOOTER
 // ------------------------------

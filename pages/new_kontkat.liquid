@@ -1,0 +1,250 @@
+{% include 'new_header' %}
+<top-element>
+  <section class="padding-y-5xl padding-y-lg-6xl bg-brand-default">
+    <div class="container">
+      <div class="row row-gap-2xl">
+        <div class="col-12 col-lg-7 ">
+          {{ 'kontakt-top' | page_editable: class: 'd-flex flex-column row-gap-lg' }}
+        </div>
+        <div class="col-12 col-lg-5 d-flex align-items-end justify-content-lg-end">
+          {{ 'kontakt-cta-top' | page_editable: class: 'neutral-primary-group d-flex flex-column gap-sm align-items-start flex-column flex-lg-row' }}
+        </div>
+      </div>
+    </div>
+  </section>
+</top-element>
+
+<section class="default-padding-section">
+  <div class="container">
+    <div class="row">
+
+      {% assign editable_name = 'kontakt-box-' %}
+      {% for i in (1..4) %}
+        <div class='col-12 col-md-6 col-lg-3'>
+          {{ editable_name | append: i | page_editable: class: 'h-100 bg-white radius-md border-1 d-flex flex-column align-items-start padding-x-xl padding-y-2xl padding-x-lg-2xl padding-y-lg-3xl neutral-secondary-group' }}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="default-padding-section" id="offices">
+  <div class="container">
+    <div class="row align-items-center row-gap-4xl padding-y-4xl padding-y-lg-6xl">
+      <div class="col-12 col-lg-6 d-flex flex-column row-gap-xl row-gap-lg-2xl">
+        {{ 'callout-text' | page_editable: class: 'col-12 d-flex flex-column row-gap-xl row-gap-lg-2xl' }}
+        <div class="row row-gap-xl row-gap-lg-2xl">
+          {% assign editable_name = 'office-location-' %}
+          {% for i in (1..6) %}
+            <div class='col-12 col-lg-6'>
+              {{ editable_name | append: i | page_editable }}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+      {{ 'callout-image-wrapper' | page_editable: class: 'col-12 col-lg-6 image-wrapper image-wrapper--3x2' }}
+
+    </div>
+  </div>
+</section>
+
+<section class="default-padding-section" id="employees">
+  <div class="container">
+    <div class="row margin-bottom-3xl margin-bottom-lg-4xl">
+      {{ 'kontakt-employees' | page_editable: class: 'col-12 d-flex flex-column row-gap-base row-gap-lg-lg' }}
+    </div>
+
+    <div class="row row-gap-2xl row-gap-lg-4xl">
+      {% for employee in lists.personal.rows %}
+        <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+          <div class="employee d-flex flex-column">
+            <div class="employee__image-wrapper margin-bottom-xl">
+              <img src="{{ employee.bild }}" alt="{{ employee.name }}" class="employee__image" loading="lazy">
+            </div>
+            <div class="employee__info d-flex flex-column">
+              <p class="employee__name text-lg fw-bold">{{ employee.namn }}</p>
+              <p class="employee__position">{{ employee.titel }}</p>
+            </div>
+
+            <div class="employee__contact d-flex flex-column margin-top-base">
+              <a href="tel:{{ employee.telefonnummer }}" class="employee__phone default-link">{{ "Telefon" | t }}
+                :{{ employee.telefonnummer }}</a>
+              <a href="mailto:{{ employee.mailadress }}" class="employee__email default-link">{{ "Email" | t }}
+                : {{ employee.mailadress }}</a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="padding-y-4xl padding-y-lg-6xl bg-brand-default">
+  <div class="container">
+    <div class="row row-gap-2xl">
+      {{ 'kontakt-cta-bottom' | page_editable: class: 'col-12 col-lg-8 d-flex flex-column row-gap-base' }}
+      <div class="col-12 col-lg-4 d-flex justify-content-lg-end">
+        <a href="/tjanster" class="neutral-button-primary">{{ "Lediga tjänster" | t }}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="default-padding-section" id="contact">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 margin-bottom-2xl margin-bottom-lg-4xl">
+        {{ 'kontakt-form' | page_editable: class: 'col-12 d-flex flex-column row-gap-base' }}
+      </div>
+      <div class="col-12 col-lg-6">
+        <form-component
+          class="job-application-form d-flex flex-column row-gap-2xl w-100 justify-content-end px-lg-3"
+          action="/sv/forms/kontakt"
+          method="post"
+          enctype="multipart/form-data"
+          modal="#contact-modal">
+          <div class="d-flex flex-wrap column-gap-sm row-gap-2xl">
+            <div class="input-group col-12 col-lg">
+              <label
+                aria-label="Förnamn"
+                for="firstname"
+                class="text-sm fw-semi w-100 margin-bottom-3xs d-flex align-items-center justify-content-between">
+                {{ 'Förnamn' | t }}
+                <span class="text-sm text-tertiary fw-regular">
+                {{ "Frivilligt" | t }}
+              </span>
+              </label>
+              <input
+                id="firstname"
+                type="text"
+                class=" input-default form-control"
+                name="förnamn">
+            </div>
+
+            <div class="input-group  col-12 col-lg">
+              <label
+                aria-label="Efternamn"
+                for="lastname"
+                class="text-sm fw-semi w-100 margin-bottom-3xs d-flex align-items-center justify-content-between">
+                {{ 'Efternamn' | t }}
+                <span class="text-sm text-tertiary fw-regular">
+                {{ "Frivilligt" | t }}
+              </span>
+              </label>
+              <input
+                id="lastname"
+                type="text"
+                class=" input-default form-control"
+                name="efternamn">
+            </div>
+          </div>
+
+          <div class="input-group has-validation col-12 col-lg">
+            <label
+              aria-label="Epost"
+              for="epost"
+              class="text-sm fw-semi w-100 margin-bottom-3xs">
+              {{ 'Epost' | t }}
+            </label>
+            <input
+              id="epost"
+              type="email"
+              class=" input-default form-control"
+              name="epost"
+              placeholder="epost@epost.se"
+              required>
+            <div class="invalid-feedback">
+              {{ "Vänligen fyll i en giltig epost adress" | t }}
+            </div>
+          </div>
+
+          <div class="input-group has-validation">
+            <label
+              aria-label="Meddelande"
+              for="message"
+              class="text-sm fw-semi w-100 margin-bottom-3xs d-flex align-items-center justify-content-between">
+              {{ 'Ditt meddelande' | t }}
+            </label>
+            <textarea
+              id="message"
+              class=" input-default h-auto w-100 padding-top-sm form-control"
+              name="message"
+              rows="5"
+              required
+              placeholder="{{ "Skriv ditt meddelande här..." | t }}"
+            ></textarea>
+            <div class="invalid-feedback">
+              {{ "Du måste fylla i ett meddelande." | t }}
+            </div>
+          </div>
+
+          <div class="input-group has-validation d-flex gap-sm">
+            <input
+              id="policy"
+              class="checkbox-default checkbox--brand-primary"
+              type="checkbox"
+              name="gdpr"
+              required>
+            <label
+              class="d-flex align-items-center gap-3xs text-sm "
+              aria-label="integritetspolicy"
+              for="policy">
+              {{ 'Du godkänner vår ' | t }}
+              <a href="/integritetspolicy" class="default-link">{{ 'integritetspolicy' | t }}</a>
+            </label>
+            <div class="invalid-feedback">
+              {{ "Du måste godkänna vår integritetspolicy." | t }}
+            </div>
+          </div>
+
+          <div class="d-flex justify-content-center align-items-center">
+            <button type="submit" class="neutral-button-primary">{{ "Skicka" | t }}</button>
+          </div>
+        </form-component>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<modal-component id="contact-modal" class="form-popup-modal">
+  <div class="news-letter-modal">
+    <div class="news-letter-modal__header d-flex margin-bottom-3xs justify-content-between align-items-center">
+      <p class="text-lg text-primary fw-bold mb-0">{{ "Tack för ditt meddelande!" | t }}</p>
+      <button
+        id="close-button"
+        type="button"
+        class=" navigation-button radius-full"
+        aria-label="Stäng varukorg"
+        data-modal-action="close"
+        data-modal-element="#contact-modal">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          viewBox="0 0 16 16"
+          fill="none">
+          <path
+            d="M12 4L4 12M4 4L12 12"
+            stroke="#030712"
+            stroke-width="1.66667"
+            stroke-linecap="round"
+            stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="news-letter-modal__body">
+      <p class="text-md text-secondary mb-0">{{ 'Vi läser igenom meddelande löpande och återkopplar till dig så snabbt som möjligt.' }}</p>
+    </div>
+
+    <div class="news-letter-modal__footer margin-top-xl d-flex">
+      <button
+        type="button"
+        class="neutral-button-primary button-large w-100"
+        data-modal-action="close"
+        data-modal-element="#contact-modal">{{ "Tillbaka till hemsidan" | t }}</button>
+    </div>
+  </div>
+</modal-component>
+{% include 'new_footer' %}

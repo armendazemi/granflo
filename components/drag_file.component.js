@@ -21,6 +21,7 @@ export default class DragFile extends HTMLElement{
     }
 
     this.fileTypes = this.fileInput.accept.split(',');
+    this.dropArea.tabIndex = 0;
   }
 
   connectedCallback() {
@@ -46,23 +47,30 @@ export default class DragFile extends HTMLElement{
 
     this.fileInput.addEventListener('change', this.handleInputChange.bind(this));
 
+    this.dropArea.addEventListener('keydown', this.handleKeyDown.bind(this));
+
   }
 
   preventDefaults(e) {
     e.preventDefault();
     e.stopPropagation();
   }
-
-  clickHandler(e) {
-    this.fileInput.click();
-  }
-
   setActive(e) {
     this.dropArea.classList.add('active');
   }
 
   setInactive() {
     this.dropArea.classList.remove('active');
+  }
+
+  clickHandler(e) {
+    this.fileInput.click();
+  }
+
+  handleKeyDown(e) {
+    if (e.key === 'Enter' || e.key === ' ') {
+      this.fileInput.click();
+    }
   }
 
   handleInputChange(e) {

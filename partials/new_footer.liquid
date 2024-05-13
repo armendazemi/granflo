@@ -1,6 +1,6 @@
-<footer class="default-padding-section bg-dark-background">
+<footer class="bg-dark-background">
   <div class="container">
-    <div class="row">
+    <div class="row padding-top-5xl padding-bottom-xl padding-top-lg-6xl padding-bottom-lg-6xl">
       <div class="col-12 col-lg-8 d-flex flex-column row-gap-2xl">
         <div class="nav-logo">
           <img src="https://d1da7yrcucvk6m.cloudfront.net/sites/305/media/1161178_granflo-vector.svg?1715089084"
@@ -10,9 +10,20 @@
         {{ 'footer-contact-info' | global_editable }}
       </div>
 
-      <div class="col-12 col-lg-4 d-flex flex-column flex-lg-row column-gap-xl justify-content-end margin-top-4xl mt-lg-0">
+      <div
+        class="col-12 col-lg-4 d-flex flex-column flex-lg-row column-gap-xl justify-content-end margin-top-4xl mt-lg-0">
         {{ 'footer-links-1' | global_editable: class: 'col-12 col-lg-6 d-flex flex-column row-gap-sm align-items-start mb-3 mb-lg-0' }}
-        {{ 'footer-links-2' | global_editable: class: 'col-12 col-lg-6 d-flex flex-column row-gap-sm align-items-start'}}
+        {{ 'footer-links-2' | global_editable: class: 'col-12 col-lg-6 d-flex flex-column row-gap-sm align-items-start' }}
+      </div>
+    </div>
+
+    <div class="row padding-top-lg-4xl padding-top-xl padding-bottom-5xl padding-bottom-lg-6xl">
+      <div class="col-12 padding-top-xl padding-top-lg-4xl ">
+        <div class="d-flex flex-column flex-lg-row justify-content-between row-gap-4xl">
+          <p class="text-md text-white order-2 order-lg-0">© Granflo Bygg AB</p>
+
+          {{ 'footer-policy-cookies' | global_editable: class: 'text-md text-white col-12 col-lg-3 d-flex flex-column flex-lg-row justify-content-end row-gap-sm column-gap-lg-xl' }}
+        </div>
       </div>
     </div>
   </div>
